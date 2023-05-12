@@ -10,8 +10,6 @@ const treeCase2: Tree = {
   c: ['a1', 'a2', 'a3', 'a4', 'a5'],
   a5: ['a'],
   b: ['d'],
-  // c: ['d', 'e', 'f'],
-  // f: ['e', 't'],
 }
 
 const treeCase3: Tree = {
