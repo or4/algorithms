@@ -10,25 +10,24 @@ export const dfsFindShortestPath = (tree: Tree, current: string, toFind: string)
     }
 
     if (current === toFind) {
-      return [[current]]
+      return [[...passed, current]]
     }
 
-    const acc: string[][] = []
-
-    const children = tree[current] || []
-    for (const child of children) {
-      const res = findPath(tree, child, toFind, [...passed, current])
-      if (res) {
-        for (const i of res) {
-          acc.push([current, ...i])
-        }
-      }
+    if (!tree[current]) {
+      return
     }
 
-    return acc.length ? acc : undefined
+    const paths: string[][] = []
+    for (const child of tree[current]) {
+      const foundedPaths = findPath(tree, child, toFind, [...passed, current])
+      foundedPaths && paths.push(...foundedPaths)
+    }
+
+    return paths.length ? paths : undefined
   }
 
   const pathsArray = findPath(tree, current, toFind)
+
   if (pathsArray?.[0]) {
     const minLength = getMinLength(pathsArray)
 
